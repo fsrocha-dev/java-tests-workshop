@@ -102,4 +102,15 @@ public class DeveloperServiceTest {
 		assertThat(sut).hasSize(1);
 		assertThat(sut.get(0)).isEqualTo(DEVELOPER);
 	}
+
+	@Test
+  public void listDevelopers_ReturnsNoDeveloper() {
+		// esse any() o argumento não interessa para o teste/nao afeta a logica
+		// para não precisar de construir uma query que não vai ser utilizada.
+    when(developerRepository.findAll(any())).thenReturn(Collections.emptyList());
+
+    List<Developer> sut = developerService.list(DEVELOPER.getSkill(), DEVELOPER.getLevel());
+
+    assertThat(sut).isEmpty();
+  }
 }
