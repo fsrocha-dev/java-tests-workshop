@@ -31,4 +31,10 @@ public class DeveloperServiceTest {
 		assertThat(sut).isEqualTo(DEVELOPER);
 	}
 
+	@Test
+	public void createDeveloper_WithInvalidData_ThrowsExecption() {
+		when(developerRepository.save(INVALID_DEVELOPER)).thenThrow(RuntimeException.class);
+
+		assertThatThrownBy(() -> developerService.create(INVALID_DEVELOPER)).isInstanceOf(RuntimeException.class);
+	}
 }
