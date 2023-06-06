@@ -1,14 +1,23 @@
 package com.example.developerapi.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Example;
 
 import static com.example.developerapi.constants.DeveloperConstants.DEVELOPER;
 import static com.example.developerapi.constants.DeveloperConstants.INVALID_DEVELOPER;;
@@ -37,4 +46,15 @@ public class DeveloperServiceTest {
 
 		assertThatThrownBy(() -> developerService.create(INVALID_DEVELOPER)).isInstanceOf(RuntimeException.class);
 	}
+
+	@Test
+  public void getDeveloper_ByExistingId_ReturnsDeveloper() {
+		// Esse teste cobre 2 cenários: 404 ou 200
+    when(developerRepository.findById(1L)).thenReturn(Optional.of(DEVELOPER));
+
+    Optional<Developer> sut = developerService.get(1L);
+
+    assertThat(sut).isNotEmpty();
+    assertThat(sut.get()).isEqualTo(DEVELOPER);
+  }
 }
