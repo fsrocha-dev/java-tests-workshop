@@ -57,4 +57,12 @@ public class DeveloperServiceTest {
     assertThat(sut).isNotEmpty();
     assertThat(sut.get()).isEqualTo(DEVELOPER);
   }
+	@Test
+  public void getDeveloper_ByUnexistingId_ReturnsEmpty() {
+    when(developerRepository.findById(1L)).thenReturn(Optional.empty());
+
+    Optional<Developer> sut = developerService.get(1L);
+
+    assertThat(sut).isEmpty();
+  }
 }
