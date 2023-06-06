@@ -14,8 +14,9 @@ public class DeveloperService {
 		this.developerRepository = developerRepository;
 	}
 
-	public Developer create(Developer developer) {
-		return developerRepository.save(developer);
+	public Developer create(DeveloperDTO developer) {
+		Developer data = new Developer(developer.getName(), developer.getSkill(), developer.getLevel());
+		return developerRepository.save(data);
 	}
 
 	public Optional<Developer> get(Long id) {

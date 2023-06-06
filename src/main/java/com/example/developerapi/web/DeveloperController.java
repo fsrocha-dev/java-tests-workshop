@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.developerapi.domain.Developer;
+import com.example.developerapi.domain.DeveloperDTO;
 import com.example.developerapi.domain.DeveloperService;
 
 @RestController
@@ -24,7 +25,7 @@ public class DeveloperController {
 	private DeveloperService developerService;
 
 	@PostMapping
-	public ResponseEntity<Developer> create(@RequestBody Developer developer) {
+	public ResponseEntity<Developer> create(@RequestBody DeveloperDTO developer) {
 		Developer developerCreated = developerService.create(developer);
 		return ResponseEntity.status(HttpStatus.CREATED).body(developerCreated);
 	}
