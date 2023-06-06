@@ -26,8 +26,8 @@ public class DeveloperService {
 		return developerRepository.findByName(name);
 	}
 
-	public List<Developer> list(String terrain, String climate) {
-		Example<Developer> query = QueryBuilder.makeQuery(new Developer(climate, terrain));
+	public List<Developer> list(String skill, String level) {
+		Example<Developer> query = QueryBuilder.makeQuery(new Developer(skill, level));
 		return developerRepository.findAll(query);
 	}
 

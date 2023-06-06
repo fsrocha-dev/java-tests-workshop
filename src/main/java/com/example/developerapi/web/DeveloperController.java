@@ -42,9 +42,9 @@ public class DeveloperController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Developer>> list(@RequestParam(required = false) String terrain,
-			@RequestParam(required = false) String climate) {
-		List<Developer> developers = developerService.list(terrain, climate);
+	public ResponseEntity<List<Developer>> list(@RequestParam(required = false) String skill,
+			@RequestParam(required = false) String level) {
+		List<Developer> developers = developerService.list(skill, level);
 		return ResponseEntity.ok(developers);
 	}
 
