@@ -85,4 +85,21 @@ public class DeveloperServiceTest {
 
 		assertThat(sut).isEmpty();
 	}
+
+	@Test
+	public void listDevelopers_ReturnsAllDevelopers() {
+		List<Developer> developers = new ArrayList<>() {
+			{
+				add(DEVELOPER);
+			}
+		};
+		Example<Developer> query = QueryBuilder.makeQuery(new Developer(DEVELOPER.getSkill(), DEVELOPER.getLevel()));
+		when(developerRepository.findAll(query)).thenReturn(developers);
+
+		List<Developer> sut = developerService.list(DEVELOPER.getSkill(), DEVELOPER.getLevel());
+
+		assertThat(sut).isNotEmpty();
+		assertThat(sut).hasSize(1);
+		assertThat(sut.get(0)).isEqualTo(DEVELOPER);
+	}
 }
