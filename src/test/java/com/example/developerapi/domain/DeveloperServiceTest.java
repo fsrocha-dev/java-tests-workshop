@@ -75,4 +75,14 @@ public class DeveloperServiceTest {
     assertThat(sut).isNotEmpty();
     assertThat(sut.get()).isEqualTo(DEVELOPER);
   }
+
+	@Test
+	public void getDeveloper_ByUnexistingName_ReturnsEmpty() {
+		final String name = "Unexisting name";
+		when(developerRepository.findByName(name)).thenReturn(Optional.empty());
+
+		Optional<Developer> sut = developerService.getByName(name);
+
+		assertThat(sut).isEmpty();
+	}
 }
