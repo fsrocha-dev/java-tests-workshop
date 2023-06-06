@@ -57,6 +57,7 @@ public class DeveloperServiceTest {
     assertThat(sut).isNotEmpty();
     assertThat(sut.get()).isEqualTo(DEVELOPER);
   }
+
 	@Test
   public void getDeveloper_ByUnexistingId_ReturnsEmpty() {
     when(developerRepository.findById(1L)).thenReturn(Optional.empty());
@@ -113,4 +114,23 @@ public class DeveloperServiceTest {
 
     assertThat(sut).isEmpty();
   }
+
+	// Como o ato de deletar não retorna nada, aqui podemos testar que pelo menos
+	// não acontece alguma exception
+	@Test
+	public void removeDeveloper_WithExistingId_doesNotThrowAnyException() {
+		// Esse assertThatCode() nos ajuda a verificar o retorno de uma exceção
+		// No caso queremos saber se o método não lança uma exceção.
+		assertThatCode(() -> developerService.remove(1L)).doesNotThrowAnyException();
+	}
+
+	@Test
+	public void removeDeveloper_WithUnexistingId_ThrowsException() {
+		// when não pode ser void pq ele recebe um método callable que deve retornar
+		// algo
+		// usamos o doThrow() para informar a exceção a ser lançada e depois a condição
+		doThrow(new RuntimeException()).when(developerRepository).deleteById(99L);
+
+		assertThatThrownBy(() -> developerService.remove(99L)).isInstanceOf(RuntimeException.class);
+	}
 }
