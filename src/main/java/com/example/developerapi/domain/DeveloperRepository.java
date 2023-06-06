@@ -7,8 +7,6 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.QueryByExampleExecutor;
 
-import com.example.developerapi.domain.Developer;
-
 public interface DeveloperRepository extends CrudRepository<Developer, Long>, QueryByExampleExecutor<Developer> {
 	Optional<Developer> findByName(String name);
 
