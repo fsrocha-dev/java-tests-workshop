@@ -49,19 +49,19 @@ public class Developer {
 		this.name = name;
 	}
 
-	public String getskill() {
+	public String getSkill() {
 		return skill;
 	}
 
-	public void setskill(String skill) {
+	public void setSkill(String skill) {
 		this.skill = skill;
 	}
 
-	public String getlevel() {
+	public String getLevel() {
 		return level;
 	}
 
-	public void setlevel(String level) {
+	public void setLevel(String level) {
 		this.level = level;
 	}
 
