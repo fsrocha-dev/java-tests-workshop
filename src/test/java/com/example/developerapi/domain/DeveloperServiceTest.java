@@ -36,27 +36,10 @@ public class DeveloperServiceTest {
 	public void createDeveloper_WithValidDataDTO_ReturnDeveloper() {
 		when(developerRepository.save(DEVELOPER)).thenReturn(DEVELOPER);
 
-		Developer sut = developerService.create(DEVELOPER_DTO);
+		Developer sut = developerService.create(DEVELOPER);
 
 		assertThat(sut).isEqualTo(DEVELOPER);
 	}
-
-	// @Test
-	// public void createDeveloper_WithValidData_ReturnDeveloper() {
-	// when(developerRepository.save(DEVELOPER)).thenReturn(DEVELOPER);
-
-	// Developer sut = developerService.create(DEVELOPER);
-
-	// assertThat(sut).isEqualTo(DEVELOPER);
-	// }
-
-	// @Test
-	// public void createDeveloper_WithInvalidData_ThrowsExecption() {
-	// when(developerRepository.save(INVALID_DEVELOPER)).thenThrow(RuntimeException.class);
-
-	// assertThatThrownBy(() ->
-	// developerService.create(INVALID_DEVELOPER)).isInstanceOf(RuntimeException.class);
-	// }
 
 	@Test
   public void getDeveloper_ByExistingId_ReturnsDeveloper() {
