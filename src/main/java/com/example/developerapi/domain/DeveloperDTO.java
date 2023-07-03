@@ -1,9 +1,23 @@
 package com.example.developerapi.domain;
 
+import javax.validation.constraints.NotNull;
+
 public class DeveloperDTO {
+
+	@NotNull
 	private String name;
+
+	@NotNull
 	private String skill;
+
+	@NotNull
 	private String level;
+
+	public DeveloperDTO(Developer developer) {
+		this.name = developer.getName();
+		this.skill = developer.getSkill();
+		this.level = developer.getLevel();
+	}
 
 	public DeveloperDTO(String name, String skill, String level) {
 		this.name = name;
