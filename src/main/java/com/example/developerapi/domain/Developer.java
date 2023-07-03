@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
@@ -15,8 +16,13 @@ public class Developer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotEmpty
 	private String name;
+
+	@NotEmpty
 	private String skill;
+
+	@NotEmpty
 	private String level;
 
 	public Developer() {
